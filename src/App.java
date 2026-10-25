@@ -13,14 +13,18 @@ public class App {
 
         // Inicializamos el bucle do-while que mostratá el menú al usuario con las distintas opciones hasta que elija salir.
         do {
-            //Estas son las opciones que se mostrarán en el menú princiapl 
-            System.out.println("\n=== GESTIÓN DEL REFUGIO ===");
-            System.out.println("1. Crear un nuevo registro de animales");
-            System.out.println("2. Configurar el precio del alimento por kg");
-            System.out.println("3. Añadir un nuevo animal al refugio");
-            System.out.println("4. Mostrar información de los animales");
-            System.out.println("5. Salir(se borrará toda la información)");
-            System.out.print("Seleccione una opción (1-5): ");
+            //Estas son las opciones que se mostrarán en el menú principal.
+
+            System.out.printf("%n|-----------------------------------------------------------------------------------------|%n");
+            System.out.printf("| %-87s |%n", "GESTIÓN DEL REFUGIO");
+            System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+            System.out.printf("| %-87s |%n", "1) Crear un nuevo registro de animales");
+            System.out.printf("| %-87s |%n", "2) Configurar el precio del alimento por kg");
+            System.out.printf("| %-87s |%n", "3) Añadir un nuevo animal al refugio");
+            System.out.printf("| %-87s |%n", "4) Mostrar información de los animales");
+            System.out.printf("| %-87s |%n", "5) Salir (se borrará toda la información)");
+            System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+            System.out.printf("Seleccione una opción (1-5): ");
 
             // Leemos la opción que ha elegido el usuario y comprobamos que sea un número válido.
             if (scanner.hasNextInt()) {
@@ -34,7 +38,6 @@ public class App {
             }
 
             // Con este switch-case, ejecutaremos la opción que el usuario ha elegido. En este commit, solo se muestra un mensaje inicial, que indica al usuario la opción que ha elegido.
-            // En los siguientes commits, se incluirá la función completa de cada opción.
             switch (opcion) {
                 case 1:
                     //En la opción 1, creamos un nuevo registro.
@@ -139,12 +142,12 @@ public class App {
                        double pesoMedio = sumaPesos / n;
                        
                        //Comensamos la tabla, dibujando la cabecera y los títulos de las columnas.
-                       System.out.printf("%n|-----------------------------------------------------------------------------------------|%n");
-                       System.out.printf("| %-87s |%n", "ANIMALES DEL REFUGIO"); //Esto centra el título de la tabla, que ocupa 87 caracteres, y lo coloca entre dos barras verticales.
-                       System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+                       System.out.printf("%n|-----------------------------------------------------------------------------------------------|%n");
+                       System.out.printf("| %-93s |%n", "ANIMALES DEL REFUGIO"); //Esto centra el título de la tabla, que ocupa 87 caracteres, y lo coloca entre dos barras verticales.
+                       System.out.printf("|-----------------------------------------------------------------------------------------------|%n");
                        System.out.printf("| %-10s | %-10s | %-18s | %-9s | %-9s | %-10s | %-9s |%n", //este printf nos permite alinear los títulos de las columnas y establecer un ancho fijo para cada una de ellas.
                        "Nombre", "Especie", "Cuidador", "Formación", "Peso (kg)", "Consumo kg", "Coste EUR");
-                       System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+                       System.out.printf("|-----------------------------------------------------------------------------------------------|%n");
                     
                       //Vamos a escribir ahora las filas, en las que cada una es un animal, y vamos a mostrar sus datos alineados con los títulos de las columnas.
                        for (int i = 0; i < n; i++) {
@@ -163,10 +166,10 @@ public class App {
                           }
                        
                        //Por último, mostramos los dos datos finales, el coste total de alimentación y el peso medio de los animales, y cerramos la tabla.
-                       System.out.printf("|-----------------------------------------------------------------------------------------|%n");
-                       System.out.printf("| Coste diario total de alimentación: %.2f EUR |%n", costeTotal);
-                       System.out.printf("| Peso medio de los animales: %.2f kg  |%n", pesoMedio);
-                       System.out.printf("|-----------------------------------------------------------------------------------------|%n%n");
+                       System.out.printf("|-----------------------------------------------------------------------------------------------|%n");
+                       System.out.printf("| %-93s |%n", String.format("Coste diario total de alimentación: %.2f EUR ", costeTotal));
+                       System.out.printf("| %-93s |%n", String.format("Peso medio de los animales: %.2f kg  ", pesoMedio));
+                       System.out.printf("|-----------------------------------------------------------------------------------------------|%n%n");
                         }
                        break;
                 case 5:

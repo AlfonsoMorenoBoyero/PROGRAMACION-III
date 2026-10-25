@@ -1,3 +1,5 @@
+//Creamos la clase Cuidador, que tiene como atributos un nombre, unos apellidos y un booleano que indica si tiene formación o no. 
+// //Además, se construye un método para obtener el nombre completo del cuidador.
 package modelo;
 
 public class Cuidador{

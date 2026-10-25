@@ -1,3 +1,5 @@
+//Creamos la clase Animal, que tiene como atributos un cuidador, un nombre, una especie, un peso y un consumo de alimento. 
+// Además, tiene un método para calcular el coste del alimento en función del precio del mismo.
 package modelo;
 public class Animal{
     private Cuidador cuidador;
@@ -14,6 +16,7 @@ public class Animal{
         this.consumoAlimento=consumoAlimento;
     }
 
+    //Creamos los métodos getters para poder acceder a los atributos de la clase Animal desde otras clases.
     public Cuidador getCuidador(){
         return cuidador;
     }
