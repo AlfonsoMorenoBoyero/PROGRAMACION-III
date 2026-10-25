@@ -115,10 +115,60 @@ public class App {
                         }
                     }
                     break;
-                    //Aquí seguiremos en el commit 4.
+                   
                 case 4:
-                    System.out.println("-> Opción 4 seleccionada (Mostrar información de los animales)");
-                    break;
+                    //Primero, avisamos al usuario si antes de pulsar la opción 1 ha pulsado esta, es decir, si no ha creado todavía un registro.
+                    //Además, le apercibimos si no hay animales registrados para no hacer divisiones por cero ni mostrar una tabla vacía.
+                    if (refugio == null) {
+                        System.out.println("Primero debe crear el refugio (Opción 1).");
+                    } else if (refugio.getNumeroAnimales() == 0) {
+                        System.out.println("No hay animales registrados aún en el refugio.");
+                    } else {
+                        //Ahora, preparamos las variables necesarias.
+                       Animal[] lista = refugio.getAnimales();
+                       int n = refugio.getNumeroAnimales(); //Recuperamos el array de animales y el número de ellos registrados en el refugio.
+
+                       double costeTotal = 0.0;
+                       double sumaPesos = 0.0; //Van a ser dos acumuladores, a los que iremos sumando el coste de cada animal y su peso, para luego calcular la media de peso.
+                       //Recorremos el array de animales y vamos sumando el coste diario de cada animal y su peso.
+                       for (int i = 0; i < n; i++) {
+                       costeTotal += lista[i].costeAlimento(refugio.getPrecioAlimento());
+                       sumaPesos += lista[i].getPeso();
+                    }
+
+                       double pesoMedio = sumaPesos / n;
+                       
+                       //Comensamos la tabla, dibujando la cabecera y los títulos de las columnas.
+                       System.out.printf("%n|-----------------------------------------------------------------------------------------|%n");
+                       System.out.printf("| %-87s |%n", "ANIMALES DEL REFUGIO"); //Esto centra el título de la tabla, que ocupa 87 caracteres, y lo coloca entre dos barras verticales.
+                       System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+                       System.out.printf("| %-10s | %-10s | %-18s | %-9s | %-9s | %-10s | %-9s |%n", //este printf nos permite alinear los títulos de las columnas y establecer un ancho fijo para cada una de ellas.
+                       "Nombre", "Especie", "Cuidador", "Formación", "Peso (kg)", "Consumo kg", "Coste EUR");
+                       System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+                    
+                      //Vamos a escribir ahora las filas, en las que cada una es un animal, y vamos a mostrar sus datos alineados con los títulos de las columnas.
+                       for (int i = 0; i < n; i++) {
+                       Animal a = lista[i];
+                       double costeAnimal = a.costeAlimento(refugio.getPrecioAlimento());
+                       String formacionTexto = a.getCuidador().getFormacion() ? "Sí" : "No";
+
+                       System.out.printf("| %-10s | %-10s | %-18s | %-9s | %-9.2f | %-10.2f | %-9.2f |%n",
+                       a.getNombre(),
+                       a.getEspecie(),
+                       a.getCuidador().getNombreCompleto(),
+                       formacionTexto,
+                       a.getPeso(),
+                       a.getConsumoAlimento(),
+                       costeAnimal);
+                          }
+                       
+                       //Por último, mostramos los dos datos finales, el coste total de alimentación y el peso medio de los animales, y cerramos la tabla.
+                       System.out.printf("|-----------------------------------------------------------------------------------------|%n");
+                       System.out.printf("| Coste diario total de alimentación: %.2f EUR |%n", costeTotal);
+                       System.out.printf("| Peso medio de los animales: %.2f kg  |%n", pesoMedio);
+                       System.out.printf("|-----------------------------------------------------------------------------------------|%n%n");
+                        }
+                       break;
                 case 5:
                     System.out.println("Opción 5 seleccionada. Saliendo del programa...");
                     break;
@@ -130,4 +180,4 @@ public class App {
            
         scanner.close(); //Cerramos el scanner para liberar recursos
     }
-}//En el siguiente commit seguiremos implementando las funcionalidades de las últimas opciones y si nos da tiempo, añadiremos los comentarios que nos faltaban por poner del primer commit.
+}//Nos falta detallar más los comentarios y comprobar si todo el código está correcto.
