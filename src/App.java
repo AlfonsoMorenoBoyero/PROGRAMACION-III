@@ -3,7 +3,7 @@ import java.util.Scanner;
 import modelo.Refugio;
 import modelo.Animal;
 import modelo.Cuidador;
-//Ahora, defnimos la clase principal App, que contiene el método main.
+//Ahora, definimos la clase principal App, que contiene el método main.
 public class App {
     public static void main(String[] args) {
         // Declaramos un objeto Scanner para leer la entrada del usuario, un objeto Refugio para gestionar los animales y una variable opción para guardar la elección del usuario
@@ -141,9 +141,9 @@ public class App {
 
                        double pesoMedio = sumaPesos / n;
                        
-                       //Comensamos la tabla, dibujando la cabecera y los títulos de las columnas.
+                       //Comenzamos la tabla, dibujando la cabecera y los títulos de las columnas.
                        System.out.printf("%n|-----------------------------------------------------------------------------------------------|%n");
-                       System.out.printf("| %-93s |%n", "ANIMALES DEL REFUGIO"); //Esto centra el título de la tabla, que ocupa 87 caracteres, y lo coloca entre dos barras verticales.
+                       System.out.printf("| %-93s |%n", "ANIMALES DEL REFUGIO"); //Esto centra el título de la tabla, y lo coloca entre dos barras verticales.
                        System.out.printf("|-----------------------------------------------------------------------------------------------|%n");
                        System.out.printf("| %-10s | %-10s | %-18s | %-9s | %-9s | %-10s | %-9s |%n", //este printf nos permite alinear los títulos de las columnas y establecer un ancho fijo para cada una de ellas.
                        "Nombre", "Especie", "Cuidador", "Formación", "Peso (kg)", "Consumo kg", "Coste EUR");
@@ -183,4 +183,4 @@ public class App {
            
         scanner.close(); //Cerramos el scanner para liberar recursos
     }
-}//Nos falta detallar más los comentarios y comprobar si todo el código está correcto.
+}
