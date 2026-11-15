@@ -5,24 +5,34 @@ public class Principal {
 
         Scanner sc=new Scanner(System.in);
 
-        Person persona1=new Person();
-        Person persona2=new Person();
-        Person persona3=new Person();
+        PersonEj3 persona1=new PersonEj3();
+        PersonEj3 persona2=new PersonEj3();
+        PersonEj3 persona3=new PersonEj3();
+
+        //Comprobamos que tenemos unos valores por defecto en el constructor
+        System.out.println("Por defecto, tenemos que "+persona1.getNombre()+" mide "+persona1.getAltura()+" m y pesa "+persona1.getPeso()+" kg");
+
 
         //PERSONA 1
         System.out.println("Introduzca el nombre de la primera persona: ");
         persona1.setNombre(sc.nextLine());
        
-        System.out.println("Introduzca la altura de la primera persona: ");
+        System.out.println("Introduzca la altura de la primera persona (en metros): ");
         persona1.setAltura(Double.parseDouble(sc.nextLine()));
         
-        System.out.println("Introduzca el peso de la primera persona: ");
+        System.out.println("Introduzca el peso de la primera persona (en kilogramos): ");
         persona1.setPeso(Double.parseDouble(sc.nextLine()));
 
         System.out.println("El nombre de la primera persona es: " + persona1.getNombre());
         System.out.println("La altura de la primera persona es: " + persona1.getAltura());
         System.out.println("El peso de la primera persona es: " + persona1.getPeso());
-
+        
+        if(persona1.calcularIMC()==-1.0){
+            System.out.println("No se ha podido calcular el IMC");
+        }
+        else{
+            System.out.println("El IMC de "+persona1.getNombre()+" es "+persona1.calcularIMC());
+        }
 
         //PERSONA 2
         System.out.println("Introduzca el nombre de la segunda persona: ");
@@ -38,6 +48,13 @@ public class Principal {
         System.out.println("La altura de la segunda persona es: " + persona2.getAltura());
         System.out.println("El peso de la segunda persona es: " + persona2.getPeso());
 
+        if(persona2.calcularIMC()==-1.0){
+            System.out.println("No se ha podido calcular el IMC");
+        }
+        else{
+            System.out.println("El IMC de "+persona2.getNombre()+" es "+persona2.calcularIMC());
+        }
+
         //PERSONA 3
         System.out.println("Introduzca el nombre de la tercera persona: ");
         persona3.setNombre(sc.nextLine());
@@ -52,6 +69,12 @@ public class Principal {
         System.out.println("La altura de la tercera persona es: " + persona3.getAltura());
         System.out.println("El peso de la tercera persona es: " + persona3.getPeso());
 
+        if(persona3.calcularIMC()==-1.0){
+            System.out.println("No se ha podido calcular el IMC");
+        }
+        else{
+            System.out.println("El IMC de "+persona3.getNombre()+" es "+persona3.calcularIMC());
+        }
 
         //Veamos ahora quién es el más alto y quién es el que más pesa (podríamos haber creado variables locales y hubiera sido una notación menos pesada)
 
