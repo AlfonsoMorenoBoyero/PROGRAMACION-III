@@ -1,0 +1,112 @@
+import java.util.ArrayList;
+import es.usal.progiii.tools.Esdia;
+
+public class Ejercicio1_Colecciones {
+    public static void main(String[] args) {
+        ArrayList<Coche> coches = new ArrayList<>();
+        int opcion;
+
+        do {
+            System.out.println("\nCONCESIONARIO (COLECCIONES)");
+            System.out.println("Opción 1: Dar de alta un nuevo coche");
+            System.out.println("Opción 2: Mirar stock");
+            System.out.println("Opción 3: Modificar precio de coche");
+            System.out.println("Opción 4: Eliminar un coche");
+            System.out.println("Opción 5: Salir");
+            opcion = Esdia.readInt("Seleccione una opción: ", 1, 5);
+
+            switch (opcion) {
+                case 1:
+                    // CREATE. Dar de alta un nuevo coche
+                    String matricula = Esdia.readString_ne("Introduzca la matrícula: ").toUpperCase();
+
+                    boolean existe = false;
+                    for (Coche c : coches) {
+                        if (c.getMatricula().equalsIgnoreCase(matricula)) {
+                            existe = true;
+                            break;
+                        }
+                    }
+
+                    if (existe) {
+                        System.out.println("Ya existe un coche con esa matrícula.");
+                    } else {
+                        String marca = Esdia.readString_ne("Introduzca la marca: ");
+                        String modelo = Esdia.readString_ne("Introduzca el modelo: ");
+                        double precio = Esdia.readDouble("Introduzca el precio (€): ", 0.0, 1000000.0);
+
+                        coches.add(new Coche(matricula, marca, modelo, precio));
+                        System.out.println("Coche dado de alta correctamente.");
+                    }
+                    break;
+
+                case 2:
+                    //READ. Mirar stock
+                    if (coches.isEmpty()) {
+                        System.out.println("No hay coches en el stock.");
+                    } else {
+                        System.out.println("\n+------------+--------------+-----------------+--------------+");
+                        System.out.printf("| %-10s | %-12s | %-15s | %-12s |%n",
+                                "Matrícula", "Marca", "Modelo", "Precio");
+                        System.out.println("+------------+--------------+-----------------+--------------+");
+                        for (Coche c : coches) {
+                            System.out.println(c);
+                        }
+                        System.out.println("+------------+--------------+-----------------+--------------+");
+                    }
+                    break;
+
+                case 3:
+                    // UPDATE. Modificar precio de coche
+                    if (coches.isEmpty()) {
+                        System.out.println("No hay coches en el stock.");
+                    } else {
+                        String matBuscar = Esdia.readString_ne("Matrícula del coche a modificar: ").toUpperCase();
+                        Coche cocheEncontrado = null;
+                        for (Coche c : coches) {
+                            if (c.getMatricula().equalsIgnoreCase(matBuscar)) {
+                                cocheEncontrado = c;
+                                break;
+                            }
+                        }
+
+                        if (cocheEncontrado == null) {
+                            System.out.println("No se ha encontrado ningún coche con esa matrícula.");
+                        } else {
+                            double nuevoPrecio = Esdia.readDouble("Introduzca el nuevo precio (€): ", 0.0, 1000000.0);
+                            cocheEncontrado.setPrecio(nuevoPrecio);
+                            System.out.println("Precio modificado correctamente.");
+                        }
+                    }
+                    break;
+
+                case 4:
+                    // DELETE. Eliminar un coche
+                    if (coches.isEmpty()) {
+                        System.out.println("No hay coches en el stock.");
+                    } else {
+                        String matEliminar = Esdia.readString_ne("Matrícula del coche a eliminar: ").toUpperCase();
+                        Coche cocheEliminar = null;
+                        for (Coche c : coches) {
+                            if (c.getMatricula().equalsIgnoreCase(matEliminar)) {
+                                cocheEliminar = c;
+                                break;
+                            }
+                        }
+
+                        if (cocheEliminar == null) {
+                            System.out.println("No se ha encontrado ningún coche con esa matrícula.");
+                        } else {
+                            coches.remove(cocheEliminar);
+                            System.out.println("Coche eliminado correctamente.");
+                        }
+                    }
+                    break;
+
+                case 5:
+                    System.out.println("Saliendo del programa...");
+                    break;
+            }
+        } while (opcion != 5);
+    }
+}
